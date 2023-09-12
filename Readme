@@ -1,0 +1,66 @@
+# Property Management System
+
+This repository contains the source code for a Property Management System implemented in Java. The system allows users to perform various operations related to property management, including adding properties, deleting properties, updating property costs, searching for properties by different criteria, and displaying property details.
+
+## Contents
+
+- [Project Overview](#project-overview)
+- [How to Use](#how-to-use)
+- [Class Descriptions](#class-descriptions)
+- [License](#license)
+
+## Project Overview
+
+The Property Management System is designed to help users manage information about properties. It consists of three main Java classes:
+
+1. **Property**: This class represents a property and defines its attributes such as property ID, number of rooms, area in square feet, floor number, city, state, cost, owner name, and owner contact number. It also includes getter and setter methods for accessing and modifying these attributes.
+
+2. **PropertyDAO**: The PropertyDAO (Data Access Object) class is responsible for interacting with a database to perform CRUD (Create, Read, Update, Delete) operations on property records. It establishes a database connection, performs database operations, and closes the connection when done.
+
+3. **PropertyMenu**: The PropertyMenu class provides a text-based user interface for interacting with the PropertyDAO and performing various actions like adding, deleting, updating, and searching for properties.
+
+## How to Use
+
+To use this Property Management System:
+
+1. Clone the repository to your local machine:
+
+   ```bash
+   git clone https://github.com/your-username/property-management-system.git
+   ```
+
+2. Make sure you have a Java development environment and a database set up (the code is configured for Oracle Database in the provided example).
+
+3. Compile the Java classes:
+
+   ```bash
+   javac Property.java PropertyDAO.java PropertyMenu.java
+   ```
+
+4. Run the PropertyMenu class to start the application:
+
+   ```bash
+   java PropertyMenu
+   ```
+
+5. Follow the on-screen menu options to perform various property management tasks.
+
+## Class Descriptions
+
+### Property Class
+
+The `Property` class defines the structure of a property and includes attributes like property ID, number of rooms, area in square feet, floor number, city, state, cost, owner name, and owner contact number. It also provides getter and setter methods for these attributes.
+
+### PropertyDAO Class
+
+The `PropertyDAO` class is responsible for database interactions. It includes methods to add, delete, update, and retrieve property records from a database. The class establishes a database connection upon instantiation and closes it when required. It uses Java's JDBC (Java Database Connectivity) to perform these operations.
+
+### PropertyMenu Class
+
+The `PropertyMenu` class provides a command-line interface for users to interact with the PropertyDAO and perform property management tasks. Users can choose options from the menu to add properties, delete properties, update property costs, search for properties by different criteria, and display property details.
+
+## License
+
+This project is licensed under the MIT License. You are free to use, modify, and distribute the code as per the terms of the license. See the [LICENSE](LICENSE) file for details.
+
+Feel free to customize and extend this Property Management System according to your needs or use it as a reference for building similar applications.
