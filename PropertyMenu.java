@@ -1,69 +1,4 @@
-//import java.util.Scanner;
-//import java.util.List;
-//
-//public class PropertyMenu {
-//
-//    public static void main(String[] args) {
-//        Scanner scanner = new Scanner(System.in);
-//        PropertyDAO propertyDAO = new PropertyDAO(); // Instantiate your DAO class
-//
-//        while (true) {
-//            System.out.println("Welcome to the Property Management System");
-//            System.out.println("1. Add Property");
-//            System.out.println("2. Delete Property");
-//            System.out.println("3. Update Property Cost");
-//            System.out.println("4. Search by City");
-//            System.out.println("5. Show All Properties");
-//            System.out.println("6. Search by Cost Range");
-//            System.out.println("7. Search by No. of Rooms and City");
-//            System.out.println("8. Exit");
-//            System.out.print("Please select an option: ");
-//
-//            int choice = scanner.nextInt();
-//            scanner.nextLine(); // Consume newline
-//            makeConnection();
-//            switch (choice) {
-//                case 1:
-//                	System.out.println("Add details of property to be added");
-//                	System.out.println("")
-//                    // Add Property
-//                    // Implement this functionality using propertyDAO.addProperty method
-//                	
-//                    break;
-//                case 2:
-//                    // Delete Property
-//                    // Implement this functionality using propertyDAO.deleteProperty method
-//                    break;
-//                case 3:
-//                    // Update Property Cost
-//                    // Implement this functionality using propertyDAO.updatePropertyCost method
-//                    break;
-//                case 4:
-//                    // Search by City
-//                    // Implement this functionality using propertyDAO.searchByCity method
-//                    break;
-//                case 5:
-//                    // Show All Properties
-//                    // Implement this functionality using propertyDAO.showAllProperties method
-//                    break;
-//                case 6:
-//                    // Search by Cost Range
-//                    // Implement this functionality using propertyDAO.searchByCost method
-//                    break;
-//                case 7:
-//                    // Search by No. of Rooms and City
-//                    // Implement this functionality using propertyDAO.searchByNoOfRoomsAndCity method
-//                    break;
-//                case 8:
-//                    System.out.println("Exiting...");
-//                    scanner.close();
-//                    System.exit(0);
-//                default:
-//                    System.out.println("Invalid choice. Please try again.");
-//            }
-//        }
-//    }
-//}
+
 import java.util.Scanner;
 import java.util.List;
 
@@ -114,14 +49,26 @@ public class PropertyMenu {
                     } else {
                         System.out.println("Invalid input format. Please try again.");
                     }
-                    break;}catch(Exception e) {System.out.print(e);}
+                    System.out.print("\n");
+                    break;}
+                	catch(Exception e) {System.out.print(e);}
                 
                 case 2:
                     // Delete Property
+                    try{
                     System.out.print("Enter the property ID to delete: ");
-                    int propertyIdToDelete = scanner.nextInt();
+                    int propertyIdToDelete;
+                     propertyIdToDelete = scanner.nextInt();
                     propertyDAO.deleteProperty(propertyIdToDelete);
+//                    System.out.print("Property Deleted Successfully :)");
+                    System.out.print("\n");
                     break;
+                    }
+                    catch(java.util.InputMismatchException e) {
+                    	System.out.println("Invalid Property ID");
+                    	if(scanner.hasNext()) scanner.next();
+                    	break;
+                    }
 
                 case 3:
                     // Update Property Cost
@@ -130,6 +77,9 @@ public class PropertyMenu {
                     System.out.print("Enter the new cost: ");
                     double newCost = scanner.nextDouble();
                     propertyDAO.updatePropertyCost(propertyIdToUpdate, newCost);
+                    System.out.print("Property Cost Updated");
+                    System.out.print("\n");
+                    
                     break;
 
                 case 4:
@@ -138,9 +88,14 @@ public class PropertyMenu {
                     String searchCity = scanner.nextLine();
                     List<Property> propertiesByCity = propertyDAO.searchByCity(searchCity);
                     // Print the properties found
+                    if(propertiesByCity.isEmpty())
+                    	System.out.print("No Property Found :(");
+                    
                     for (Property property : propertiesByCity) {
                         System.out.println(property.toString());
                     }
+                    System.out.print("\n");
+                    
                     break;
 
                 case 5:
@@ -150,9 +105,12 @@ public class PropertyMenu {
                     if(allProperties.isEmpty()) {System.out.println("No Results Found");
                     	break;
                     }
+                    if(allProperties.isEmpty())
+                    	System.out.print("No Property Found :(");
                     for (Property property : allProperties) {
                         System.out.println(property.toString());
                     }
+                    System.out.print("\n");
                     break;
 
                 case 6:
@@ -163,9 +121,12 @@ public class PropertyMenu {
                     double maxCost = scanner.nextDouble();
                     List<Property> propertiesByCostRange = propertyDAO.searchByCost(minCost, maxCost);
                     // Print the properties found
+                    if(propertiesByCostRange.isEmpty())
+                    	System.out.print("No Property Found :(");
                     for (Property property : propertiesByCostRange) {
                         System.out.println(property.toString());
                     }
+                    System.out.print("\n");
                     break;
 
                 case 7:
@@ -176,9 +137,13 @@ public class PropertyMenu {
                     String searchCityAndRooms = scanner.nextLine();
                     List<Property> searchByNoOfRoomsAndCity = propertyDAO.searchByNoOfRoomsAndCity( searchCityAndRooms,numRooms);
                     // Print the properties found
+                    if(searchByNoOfRoomsAndCity.isEmpty())
+                    	System.out.print("No Property Found :(");
+                    
                     for (Property property : searchByNoOfRoomsAndCity) {
                         System.out.println(property.toString());
                     }
+                    System.out.println("\n");
                     break;
 
                 case 8:
