@@ -1,4 +1,4 @@
-# Property Management System
+#Property Management System
 
 This repository contains the source code for a Property Management System implemented in Java. The system allows users to perform various operations related to property management, including adding properties, deleting properties, updating property costs, searching for properties by different criteria, and displaying property details.
 
