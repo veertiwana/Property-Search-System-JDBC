@@ -28,7 +28,7 @@
 	            throw new RuntimeException("Failed to connect to the database.");
 	        }
 	    }
-
+	   
 	    public int addProperty(Property prop) {
 	        int rowsAffected = 0;
 	        String query = "INSERT INTO PROPERTY (PROPERTYID, NOOFROOMS, AREAINSQFT, FLOORNO, CITY, STATE, COST, OWNERNAME, OWNERCONTACTNO) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?)";
@@ -47,11 +47,14 @@
 	            
 	            rowsAffected = preparedStatement.executeUpdate();
 	        } catch (SQLException e) {
+	        	System.out.println(e.getMessage());
 	            e.printStackTrace();
 	        }
-	        
 	        return rowsAffected;
 	    }
+//	    catch(SQLException e) {
+//	    	e.printStackTrace();
+//	    }
 
 	    public int deleteProperty(int propId) {
 	        int rowsAffected = 0;
